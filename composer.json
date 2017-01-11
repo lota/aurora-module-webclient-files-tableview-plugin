@@ -11,6 +11,6 @@
 		"afterlogic/aurora-framework": "~0.3"
 	},
 	"extra": {
-		"installer-name": "FilesTableViewWebclientPlugin"
+		"installer-name": "FilesTableviewWebclientPlugin"
 	}
 }
