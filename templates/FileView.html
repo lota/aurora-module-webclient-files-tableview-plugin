@@ -1,7 +1,9 @@
 <div class="item" data-bind="css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared}">
 	<span data-bind="text: fileName"></span>
 	<span data-bind="text: friendlySize"></span>
+	<span class="name">
 	<!-- ko foreach: actions -->
 		<a class="button view" href="javascript: void(0)" data-bind="click: function () { $parent.executeAction($data); }, text: $parent.getActionText($data)"></a>
 	<!-- /ko -->
+	</span>
 </div>
