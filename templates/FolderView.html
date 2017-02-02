@@ -1,4 +1,9 @@
-<div class="item" data-bind="css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared}">
-	<span data-bind="text: fileName()"></span>
-	<a class="button view" href="javascript: void(0)">Open</a>
+<div class="item folder2" data-bind="css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared}">
+	<div class="item_content">
+		<span class="icon"></span>
+		<span class="name" data-bind="text: fileName()"></span>
+		<div class="footer">
+			<a class="button view" href="javascript: void(0)">Open</a>
+		</div>
+	</div>
 </div>
