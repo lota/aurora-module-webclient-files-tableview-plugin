@@ -35,27 +35,36 @@ module.exports = function (oAppData) {
 							data = {
 								'displayName': ko.observable('')
 							},
-							oItem = null;
+							oItem = null,
+							$RightPannel = $('<div id="files_right_panel" style="width: 640px; border-left: 1px solid #eee;"></div>'),
+							$Form = $('<form action="?/Api/" method="post" id="view_form" target="view_iframe" style="display: none;"></form>'),
+							$Iframe = $('<iframe id="view_iframe" name="view_iframe" style="width: 100%; height: 100%; border: none;"></iframe>')
+						;
+						
+						$Iframe.load(function(){
+							$('iframe').contents().find('img').css({'max-width':'100%', 'max-height':'100%'});							
+						});
 
 //							var $oRightPannel = $('<div id="files_right_panel" style="width: 480px; border-left: 1px solid #eee;" data-bind="text: displayName"></div>');
-						var $oRightPannel = $('<div id="files_right_panel" style="width: 640px; border-left: 1px solid #eee;"><form action="?/Api/" method="post" id="view_form" target="view_iframe" style="display: none;"></form><iframe id="view_iframe" name="view_iframe" style="width: 100%; height: 100%; border: none;"></iframe></div>');
-						$("#files_center_panel").after($oRightPannel);
-						var oForm = $('#view_form');
-						$('<input type="hidden" name="Format" />').val('Raw').appendTo(oForm);
-						$('<input type="submit" />').val('submit').appendTo(oForm);
+						
+						$RightPannel.append($Form);
+						$RightPannel.append($Iframe);
+						
+						$('<input type="hidden" name="Format" />').val('Raw').appendTo($Form);
+						$('<input type="submit" />').val('submit').appendTo($Form);
+						$("#files_center_panel").after($RightPannel);
 
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
-							$('#view_iframe').attr('src', "");								
+							$Iframe.attr('src', "");								
 							if (newValue !== undefined && oItem !== newValue)
 							{
-								newValue.createFormFields(oForm, 'ViewFile');
-								oForm.submit();									
-
+								newValue.createFormFields($Form, 'ViewFile');
+								$Form.submit();									
 //									data.displayName(newValue.displayName());
 							}
 						});
 
-						ko.applyBindings(data, $oRightPannel.get(0));
+						ko.applyBindings(data, $RightPannel.get(0));
 					});
 				}
 
