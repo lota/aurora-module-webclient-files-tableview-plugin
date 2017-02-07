@@ -3,6 +3,7 @@
 		<span class="icon"></span>
 		<span class="name" data-bind="text: fileName"></span>
 		<span class="size" data-bind="text: friendlySize"></span>
+		<span class="size" data-bind="text: sLastModified"></span>
 		<div class="footer">
 			<!-- ko foreach: actions -->
 				<a class="button view" href="javascript: void(0)" data-bind="click: function () { $parent.executeAction($data); }, text: $parent.getActionText($data)"></a>

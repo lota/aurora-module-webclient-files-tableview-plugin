@@ -3,6 +3,8 @@
 module.exports = function (oAppData) {
 	var
 		_ = require('underscore'),
+		$ = require('jquery'),
+		ko = require('knockout'),
 		TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
 		
 		App = require('%PathToCoreWebclientModule%/js/App.js'),
@@ -25,6 +27,36 @@ module.exports = function (oAppData) {
 					App.subscribeEvent('Files::ChangeItemsView', function (oParams) {
 						oParams.ViewName = '%ModuleName%_ItemsView';
 					});
+					if (Settings.enablePreviewPane())
+					{
+						App.subscribeEvent('FilesWebclient::ShowView::after', function (oParams) {
+							var 
+								data = {
+									'displayName': ko.observable('')
+								},
+								oItem = null;
+								
+//							var $oRightPannel = $('<div id="files_right_panel" style="width: 480px; border-left: 1px solid #eee;" data-bind="text: displayName"></div>');
+							var $oRightPannel = $('<div id="files_right_panel" style="width: 640px; border-left: 1px solid #eee;"><form action="?/Api/" method="post" id="view_form" target="view_iframe" style="display: none;"></form><iframe id="view_iframe" name="view_iframe" style="width: 100%; height: 100%; border: none;"></iframe></div>');
+							$("#files_center_panel").after($oRightPannel);
+							var oForm = $('#view_form');
+							$('<input type="hidden" name="Format" />').val('Raw').appendTo(oForm);
+							$('<input type="submit" />').val('submit').appendTo(oForm);
+							
+							oParams.View.firstSelectedFile.subscribe(function(newValue) {
+								$('#view_iframe').attr('src', "");								
+								if (newValue !== undefined && oItem !== newValue)
+								{
+									newValue.createFormFields(oForm, 'ViewFile');
+									oForm.submit();									
+							
+//									data.displayName(newValue.displayName());
+								}
+							});
+							
+							ko.applyBindings(data, $oRightPannel.get(0));
+						});
+					}
 				}
 			}
 		};
