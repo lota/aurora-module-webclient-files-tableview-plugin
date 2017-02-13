@@ -1,13 +1,17 @@
 <div class="item file" data-bind="css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared}">
 	<div class="item_content">
-		<span class="icon"></span>
+		<span class="image" data-bind="customTooltip: getTooltip(iconAction()), click: function () { executeAction(iconAction()); }, 
+				css: {'has_action': iconAction() !== ''}, clickBubble: iconAction() === ''">
+			<!-- ko if: thumbnailSrc() !== '' -->
+			<img data-bind="attr: {'src': thumbnailSrc()}" style="height: 32px;"/>
+			<!-- /ko -->
+			<!-- ko if: thumbnailSrc() === '' -->
+			<span class="icon" data-bind="css: extension().toLowerCase()"></span>
+			<!-- /ko -->
+		</span>
+		
 		<span class="name" data-bind="text: fileName"></span>
 		<span class="size" data-bind="text: friendlySize"></span>
 		<span class="size" data-bind="text: sLastModified"></span>
-		<div class="footer">
-			<!-- ko foreach: actions -->
-				<a class="button view" href="javascript: void(0)" data-bind="click: function () { $parent.executeAction($data); }, text: $parent.getActionText($data)"></a>
-			<!-- /ko -->
-		</div>
 	</div>
 </div>
