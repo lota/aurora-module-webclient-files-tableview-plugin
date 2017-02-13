@@ -3,7 +3,7 @@
 		<span class="image" data-bind="customTooltip: getTooltip(iconAction()), click: function () { executeAction(iconAction()); }, 
 				css: {'has_action': iconAction() !== ''}, clickBubble: iconAction() === ''">
 			<!-- ko if: thumbnailSrc() !== '' -->
-			<img data-bind="attr: {'src': thumbnailSrc()}" style="height: 32px;"/>
+			<img data-bind="attr: {'src': thumbnailSrc()}" style="height: 32px; vertical-align: middle;"/>
 			<!-- /ko -->
 			<!-- ko if: thumbnailSrc() === '' -->
 			<span class="icon" style="vertical-align: middle;" data-bind="css: extension().toLowerCase()"></span>
