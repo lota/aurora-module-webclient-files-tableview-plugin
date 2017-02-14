@@ -26,7 +26,6 @@ module.exports = function (oAppData) {
 				ModulesManager.run('SettingsWebclient', 'registerSettingsTab', [function () { return require('modules/%ModuleName%/js/views/SettingsPaneView.js'); }, Settings.HashModuleName, TextUtils.i18n('%MODULENAME%/LABEL_SETTINGS_TAB')]);
 				{
 					App.subscribeEvent('Files::ChangeItemsView', function (oParam) {
-						console.log(oParam.View.bInPopup);
 						if (Settings.enableModule())
 						{
 							oParam.View.itemsViewTemplate(TemplateName);
