@@ -1,5 +1,8 @@
-<div class="item file" data-bind="css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared}">
-	<div class="item_content ui-droppable dragHandle">
+<div class="item file ui-droppable dragHandle" data-bind="
+	css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared},
+	event: {'dragstart': eventDragStart}
+">
+	<div class="item_content">
 		<span class="image" data-bind="customTooltip: getTooltip(iconAction()), click: function () { executeAction(iconAction()); }, 
 				css: {'has_action': iconAction() !== ''}, clickBubble: iconAction() === ''">
 			<!-- ko if: thumbnailSrc() !== '' -->
