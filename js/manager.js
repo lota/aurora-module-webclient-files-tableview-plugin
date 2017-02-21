@@ -55,7 +55,7 @@ module.exports = function (oAppData) {
 						ko.applyBindings(data, $RightPannel.get(0));
 	
 						var 
-							$Form = $('#view_form'),
+//							$Form = $('#view_form'),
 							$Iframe = $("#view_iframe")
 						;
 						$Iframe.load(function(){
@@ -63,12 +63,13 @@ module.exports = function (oAppData) {
 						});
 						
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
-							$Iframe.attr('src', "");	
+							$Iframe.attr('src', '');	
 							if (newValue !== undefined && oItem !== newValue)
 							{
-								newValue.createFormFields($Form, 'ViewFile');
-								$Form.submit();									
-								data.displayName(newValue.displayName());
+								$Iframe.attr('src', newValue.sViewUrl); // todo: check it
+//								newValue.createFormFields($Form, 'ViewFile');
+//								$Form.submit();									
+//								data.displayName(newValue.displayName());
 							}
 						});
 					}
