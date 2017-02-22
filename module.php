@@ -1,6 +1,8 @@
 <?php
 
-class FilesTableviewWebclientPluginModule extends AApiModule
+namespace Aurora\Modules;
+
+class FilesTableviewWebclientPluginModule extends \AApiModule
 {
 	public function init() 
 	{
