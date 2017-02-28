@@ -2,7 +2,7 @@
 
 namespace Aurora\Modules;
 
-class FilesTableviewWebclientPluginModule extends \AApiModule
+class FilesTableviewWebclientPluginModule extends \Aurora\System\AbstractModule
 {
 	public function init() 
 	{
@@ -20,9 +20,9 @@ class FilesTableviewWebclientPluginModule extends \AApiModule
 	 */
 	public function GetSettings()
 	{
-		\CApi::checkUserRoleIsAtLeast(\EUserRole::Anonymous);
+		\Aurora\System\Api::checkUserRoleIsAtLeast(\EUserRole::Anonymous);
 		
-		$oUser = \CApi::getAuthenticatedUser();
+		$oUser = \Aurora\System\Api::getAuthenticatedUser();
 		if (!empty($oUser) && $oUser->Role === \EUserRole::NormalUser)
 		{
 			return array(
@@ -42,12 +42,12 @@ class FilesTableviewWebclientPluginModule extends \AApiModule
 	 */
 	public function UpdateSettings($EnableModule, $EnablePreviewPane)
 	{
-		\CApi::checkUserRoleIsAtLeast(\EUserRole::NormalUser);
+		\Aurora\System\Api::checkUserRoleIsAtLeast(\EUserRole::NormalUser);
 		
-		$iUserId = \CApi::getAuthenticatedUserId();
+		$iUserId = \Aurora\System\Api::getAuthenticatedUserId();
 		if (0 < $iUserId)
 		{
-			$oCoreDecorator = \CApi::GetModuleDecorator('Core');
+			$oCoreDecorator = \Aurora\System\Api::GetModuleDecorator('Core');
 			$oUser = $oCoreDecorator->GetUser($iUserId);
 			$oUser->{$this->GetName().'::EnableModule'} = $EnableModule;
 			$oUser->{$this->GetName().'::EnablePreviewPane'} = $EnablePreviewPane;
