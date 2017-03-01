@@ -64,6 +64,7 @@ module.exports = function (oAppData) {
 						
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
 							$Iframe.attr('src', '');	
+							data.displayName('');
 							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
 								$Iframe.attr('src', newValue.sViewUrl);
