@@ -64,12 +64,10 @@ module.exports = function (oAppData) {
 						
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
 							$Iframe.attr('src', '');	
-							if (newValue !== undefined && oItem !== newValue)
+							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
-								$Iframe.attr('src', newValue.sViewUrl); // todo: check it
-//								newValue.createFormFields($Form, 'ViewFile');
-//								$Form.submit();									
-//								data.displayName(newValue.displayName());
+								$Iframe.attr('src', newValue.sViewUrl);
+								data.displayName(newValue.displayName());
 							}
 						});
 					}
