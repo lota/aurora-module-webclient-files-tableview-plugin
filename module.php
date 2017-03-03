@@ -2,7 +2,7 @@
 
 namespace Aurora\Modules;
 
-class FilesTableviewWebclientPluginModule extends \Aurora\System\AbstractModule
+class FilesTableviewWebclientPluginModule extends \Aurora\System\Module\AbstractModule
 {
 	public function init() 
 	{
