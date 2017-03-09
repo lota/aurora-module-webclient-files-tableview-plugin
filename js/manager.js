@@ -67,7 +67,7 @@ module.exports = function (oAppData) {
 							data.displayName('');
 							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
-								$Iframe.attr('src', newValue.sViewUrl);
+								$Iframe.attr('src', newValue.getActionUrl('view'));
 								data.displayName(newValue.displayName());
 							}
 						});
