@@ -14,7 +14,10 @@
 		</span>
 		
 		<span class="name" data-bind="text: fileName"></span>
-		<span class="size" data-bind="text: friendlySize"></span>
-		<span class="size" data-bind="text: sLastModified"></span>
+		<div class="size">
+			<span data-bind="text: friendlySize"></span>
+			<br />
+			<span data-bind="text: sLastModified"></span>
+		</div>
 	</div>
 </div>
