@@ -45,7 +45,6 @@ module.exports = function (oAppData) {
 						$RightPannel = $("<!-- ko template: {name: '%ModuleName%_PaneView'} --><!-- /ko -->")
 					;
 					
-
 					if (!bShow)
 					{
 						bShow = true;
@@ -54,21 +53,19 @@ module.exports = function (oAppData) {
 
 						ko.applyBindings(data, $RightPannel.get(0));
 	
-						var 
-//							$Form = $('#view_form'),
-							$Iframe = $("#view_iframe")
-						;
-						$Iframe.load(function(){
-							$Iframe.contents().find('img').css({'max-width':'100%', 'max-height':'100%'});							
-						});
-						
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
-							$Iframe.attr('src', '');	
 							data.displayName('');
 							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
-								$Iframe.attr('src', newValue.getActionUrl('view'));
 								data.displayName(newValue.displayName());
+								if (newValue.isViewMimeType())
+								{
+									$("#files_view_pane").html("<img style='max-width:320px; max-height:200px;' src='" + newValue.getActionUrl('view') + "'>");
+								}
+								else
+								{
+									$("#files_view_pane").html("<iframe id='view_iframe' name='view_iframe' style='width: 320px; height: 200px; border: none;' src='" + newValue.getActionUrl('view') + "'></iframe>");
+								}
 							}
 						});
 					}
