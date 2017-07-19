@@ -55,6 +55,7 @@ module.exports = function (oAppData) {
 	
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
 							data.displayName('');
+							$("#files_view_pane").html("");
 							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
 								data.displayName(newValue.displayName());
