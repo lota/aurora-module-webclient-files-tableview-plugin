@@ -49,9 +49,33 @@
 }
 
 .file-preview {
-	float: right;
+/*	float: right;
 	background: grey;
-	padding: 40px;
+	padding: 40px;*/
+	flex-grow: 1;
+	width: 380px;
+	border-left: 1px solid #eee;
+	
+	.panel_top {
+		border-bottom: 0px;
+		padding: 0px;
+		user-select: initial; 
+		text-align: center; 
+		margin: 30px; 
+		font-size: 18px;
+		
+		white-space: normal;
+		
+		/* Careful, this breaks the word wherever it is without a hyphen */
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+
+		/* Adds a hyphen where the word breaks */
+		-webkit-hyphens: auto;
+		-ms-hyphens: auto;
+		-moz-hyphens: auto;
+		hyphens: auto;
+	}
 }
 
 .view_iframe img {
