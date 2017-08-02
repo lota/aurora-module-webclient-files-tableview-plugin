@@ -2,11 +2,13 @@
 	css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared},
 	event: {'dragstart': eventDragStart}
 ">
-	<div class="item_content">
+	<div class="item_content" style="white-space: nowrap;">
 		<span class="image" data-bind="customTooltip: getTooltip(iconAction()), click: function () { executeAction(iconAction()); }, 
 				css: {'has_action': iconAction() !== ''}, clickBubble: iconAction() === ''">
 			<!-- ko if: thumbnailSrc() !== '' -->
-			<img data-bind="attr: {'src': thumbnailSrc()}" style="width:32px; vertical-align: middle;"/>
+			<span style="width:32px; height:32px;">
+				<img data-bind="attr: {'src': thumbnailSrc()}" style="max-width: 32px; vertical-align: middle;"/>
+			</span>	
 			<!-- /ko -->
 			<!-- ko if: thumbnailSrc() === '' -->
 			<span class="icon" style="vertical-align: middle;" data-bind="css: extension().toLowerCase()"></span>
@@ -15,9 +17,8 @@
 		
 		<span class="name" data-bind="text: fileName" style="padding-left: 10px"></span>
 		<div class="size" style="text-align: right;">
-			<span data-bind="text: friendlySize"></span>
-			<br />
-			<span data-bind="text: sLastModified"></span>
+			<div data-bind="text: friendlySize"></div>
+			<div data-bind="text: sLastModified"></div>
 		</div>
 	</div>
 </div>

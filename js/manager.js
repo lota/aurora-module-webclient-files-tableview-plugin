@@ -61,7 +61,7 @@ module.exports = function (oAppData) {
 								data.displayName(newValue.displayName());
 								if (newValue.isViewMimeType())
 								{
-									$("#files_view_pane").html("<img style='max-width:320px; max-height:200px;' src='" + newValue.getActionUrl('view') + "'>");
+									$("#files_view_pane").html("<img style='width:100%;' src='" + newValue.getActionUrl('view') + "'>");
 								}
 								else
 								{
