@@ -39,6 +39,7 @@ module.exports = function (oAppData) {
 					var 
 						data = {
 							'displayName': ko.observable(''),
+							'fileInfo': ko.observable(''),
 							'enablePreviewPane': Settings.enablePreviewPane
 						},
 						oItem = null,
@@ -55,10 +56,13 @@ module.exports = function (oAppData) {
 	
 						oParams.View.firstSelectedFile.subscribe(function(newValue) {
 							data.displayName('');
+							data.fileInfo('');
 							$("#files_view_pane").html("");
 							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
+								console.log(newValue.sHeaderText);
 								data.displayName(newValue.displayName());
+								data.fileInfo(newValue.sHeaderText);
 								if (newValue.isViewMimeType())
 								{
 									$("#files_view_pane").html("<img style='width:100%;' src='" + newValue.getActionUrl('view') + "'>");
