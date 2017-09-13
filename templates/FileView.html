@@ -1,8 +1,10 @@
-<div class="item file ui-droppable dragHandle" data-bind="
-	css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared},
-	event: {'dragstart': eventDragStart}
-">
-	<div class="item_content" style="white-space: nowrap;">
+<div class="item file" data-bind="
+	draggablePlace: !$parent.bInPopup ? $parent.dragAndDropHelperBound : null, 
+	draggableDragStartCallback: function() {if (!$parent.bInPopup) $root.dragover(true);}, 
+	draggableDragStopCallback: function() {if (!$parent.bInPopup) $root.dragover(false);}, 
+	css: {'selected': selected, 'checked': checked, 'deleted': deleted, 'shared': shared}"
+>
+	<div class="item_content dragHandle" style="white-space: nowrap;">
 		<span class="image" data-bind="customTooltip: getTooltip(iconAction()), click: function () { executeAction(iconAction()); }, 
 				css: {'has_action': iconAction() !== ''}, clickBubble: iconAction() === ''">
 			<!-- ko if: thumbnailSrc() !== '' -->

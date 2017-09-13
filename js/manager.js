@@ -60,7 +60,6 @@ module.exports = function (oAppData) {
 							$("#files_view_pane").html("");
 							if (newValue !== undefined && oItem !== newValue && Settings.enablePreviewPane())
 							{
-								console.log(newValue.sHeaderText);
 								data.displayName(newValue.displayName());
 								data.fileInfo(newValue.sHeaderText);
 								if (newValue.isViewMimeType())
