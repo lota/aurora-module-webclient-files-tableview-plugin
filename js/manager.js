@@ -23,8 +23,16 @@ module.exports = function (oAppData) {
 	{
 		return {
 			start: function (ModulesManager) {
-				ModulesManager.run('SettingsWebclient', 'registerSettingsTab', [function () { return require('modules/%ModuleName%/js/views/SettingsPaneView.js'); }, Settings.HashModuleName, TextUtils.i18n('%MODULENAME%/LABEL_SETTINGS_TAB')]);
-				{
+				ModulesManager.run(
+					'SettingsWebclient',
+					'registerSettingsTabSection', 
+					[
+						function () { return require('modules/%ModuleName%/js/views/SettingsPaneView.js'); },
+						Settings.HashModuleName,
+						TextUtils.i18n('%MODULENAME%/LABEL_SETTINGS_TAB')
+					]
+				);
+//				{
 					App.subscribeEvent('Files::ChangeItemsView', function (oParam) {
 						if (Settings.enableModule())
 						{
@@ -34,7 +42,7 @@ module.exports = function (oAppData) {
 							oParam.View.itemsViewTemplate(newValue ? TemplateName : oParam.TemplateName);
 						});
 					});
-				}
+//				}
 				App.subscribeEvent('FilesWebclient::ShowView::after', function (oParams) {
 					var 
 						data = {
