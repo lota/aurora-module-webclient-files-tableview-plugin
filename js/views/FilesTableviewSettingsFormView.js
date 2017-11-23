@@ -16,7 +16,7 @@ var
  * 
  * @constructor
  */
-function CSettingsPaneView()
+function CFilesTableviewSettingsFormView()
 {
 	CAbstractSettingsFormView.call(this, Settings.ServerModuleName);
 
@@ -24,20 +24,20 @@ function CSettingsPaneView()
 	this.enablePreviewPane = ko.observable(Settings.enablePreviewPane());
 }
 
-_.extendOwn(CSettingsPaneView.prototype, CAbstractSettingsFormView.prototype);
+_.extendOwn(CFilesTableviewSettingsFormView.prototype, CAbstractSettingsFormView.prototype);
 
 /**
  * Name of template that will be bound to this JS-object.
- * 'SettingsPaneView' - name of template file in 'templates' folder.
+ * 'FilesTableviewSettingsFormView' - name of template file in 'templates' folder.
  */
-CSettingsPaneView.prototype.ViewTemplate = '%ModuleName%_SettingsPaneView';
+CFilesTableviewSettingsFormView.prototype.ViewTemplate = '%ModuleName%_FilesTableviewSettingsFormView';
 
 /**
  * Returns array with all settings values wich is used for indicating if there were changes on the page.
  * 
  * @returns {Array} Array with all settings values;
  */
-CSettingsPaneView.prototype.getCurrentValues = function ()
+CFilesTableviewSettingsFormView.prototype.getCurrentValues = function ()
 {
 	return [
 		this.enableModule(),
@@ -48,7 +48,7 @@ CSettingsPaneView.prototype.getCurrentValues = function ()
 /**
  * Reverts all settings values to global ones.
  */
-CSettingsPaneView.prototype.revertGlobalValues = function ()
+CFilesTableviewSettingsFormView.prototype.revertGlobalValues = function ()
 {
 	this.enableModule(Settings.enableModule());
 	this.enablePreviewPane(Settings.enablePreviewPane());
@@ -59,7 +59,7 @@ CSettingsPaneView.prototype.revertGlobalValues = function ()
  * 
  * @returns Object
  */
-CSettingsPaneView.prototype.getParametersForSave = function ()
+CFilesTableviewSettingsFormView.prototype.getParametersForSave = function ()
 {
 	return {
 		'EnableModule': this.enableModule(),
@@ -72,9 +72,9 @@ CSettingsPaneView.prototype.getParametersForSave = function ()
  * 
  * @param {Object} oParameters Parameters with new values which were passed to the server.
  */
-CSettingsPaneView.prototype.applySavedValues = function (oParameters)
+CFilesTableviewSettingsFormView.prototype.applySavedValues = function (oParameters)
 {
 	Settings.update(oParameters.EnableModule, oParameters.EnablePreviewPane);
 };
 
-module.exports = new CSettingsPaneView();
+module.exports = new CFilesTableviewSettingsFormView();

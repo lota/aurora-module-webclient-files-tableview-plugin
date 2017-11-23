@@ -27,7 +27,7 @@ module.exports = function (oAppData) {
 					'SettingsWebclient',
 					'registerSettingsTabSection', 
 					[
-						function () { return require('modules/%ModuleName%/js/views/SettingsPaneView.js'); },
+						function () { return require('modules/%ModuleName%/js/views/FilesTableviewSettingsFormView.js'); },
 						Settings.HashModuleName,
 						TextUtils.i18n('%MODULENAME%/LABEL_SETTINGS_TAB')
 					]
