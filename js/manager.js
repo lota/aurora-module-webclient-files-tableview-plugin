@@ -2,7 +2,6 @@
 
 module.exports = function (oAppData) {
 	var
-		_ = require('underscore'),
 		$ = require('jquery'),
 		ko = require('knockout'),
 		TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
@@ -10,14 +9,13 @@ module.exports = function (oAppData) {
 		App = require('%PathToCoreWebclientModule%/js/App.js'),
 				
 		Settings = require('modules/%ModuleName%/js/Settings.js'),
-		oSettings = _.extend({}, oAppData[Settings.ServerModuleName] || {}, oAppData['%ModuleName%'] || {}),
 		
 		bNormalUser = App.getUserRole() === window.Enums.UserRole.NormalUser,
 		bShow = false,
 		TemplateName = '%ModuleName%_ItemsView'
 	;
 
-	Settings.init(oSettings);
+	Settings.init(oAppData);
 	
 	if (bNormalUser)
 	{

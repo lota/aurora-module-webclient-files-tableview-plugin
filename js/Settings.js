@@ -1,6 +1,11 @@
 'use strict';
 
-var ko = require('knockout');
+var
+	ko = require('knockout'),
+	_ = require('underscore'),
+	
+	Types = require('%PathToCoreWebclientModule%/js/utils/Types.js')
+;
 
 module.exports = {
 	ServerModuleName: '%ModuleName%',
@@ -15,15 +20,18 @@ module.exports = {
 	enablePreviewPane: ko.observable(false),
 	
 	/**
-	 * Initializes settings of simple chat module.
+	 * Initializes settings from AppData object sections.
 	 * 
-	 * @param {Object} oAppDataSection Simple chat module section in AppData.
+	 * @param {Object} oAppData Object contained modules settings.
 	 */
-	init: function (oAppDataSection) {
-		if (oAppDataSection)
+	init: function (oAppData)
+	{
+		var oAppDataSection = oAppData['%ModuleName%'];
+		
+		if (!_.isEmpty(oAppDataSection))
 		{
-			this.enableModule(!!oAppDataSection.EnableModule);
-			this.enablePreviewPane(!!oAppDataSection.EnablePreviewPane);
+			this.enableModule(Types.pBool(oAppDataSection.EnableModule, this.enableModule()));
+			this.enablePreviewPane(Types.pBool(oAppDataSection.EnablePreviewPane, this.enablePreviewPane()));
 		}
 	},
 	
@@ -31,8 +39,10 @@ module.exports = {
 	 * Updates settings of simple chat module after editing.
 	 * 
 	 * @param {boolean} bEnableModule New value of setting 'EnableModule'
+	 * @param {boolean} bEnablePreviewPane New value of setting 'EnablePreviewPane'
 	 */
-	update: function (bEnableModule, bEnablePreviewPane) {
+	update: function (bEnableModule, bEnablePreviewPane)
+	{
 		this.enableModule(bEnableModule);
 		this.enablePreviewPane(bEnablePreviewPane);
 	}
