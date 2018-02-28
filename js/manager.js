@@ -49,7 +49,8 @@ module.exports = function (oAppData) {
 							'enablePreviewPane': Settings.enablePreviewPane
 						},
 						oItem = null,
-						$RightPannel = $("<!-- ko template: {name: '%ModuleName%_PaneView'} --><!-- /ko -->")
+						$RightPannel = $("<!-- ko template: {name: '%ModuleName%_PaneView'} --><!-- /ko -->"),
+						aImgMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 					;
 					
 					if (!bShow)
@@ -68,7 +69,7 @@ module.exports = function (oAppData) {
 							{
 								data.displayName(newValue.displayName());
 								data.fileInfo(newValue.sHeaderText);
-								if (newValue.isViewMimeType())
+								if (-1 !== $.inArray(newValue.mimeType(), aImgMimeTypes))
 								{
 									$("#files_view_pane").html("<img style='width:100%;' src='" + newValue.getActionUrl('view') + "'>");
 								}
