@@ -69,7 +69,20 @@ module.exports = function (oAppData) {
 							{
 								data.displayName(newValue.displayName());
 								data.fileInfo(newValue.sHeaderText);
-								if (-1 !== $.inArray(newValue.mimeType(), aImgMimeTypes))
+								if (typeof(newValue.oExtendedProps) !== 'undefined' &&  typeof(newValue.oExtendedProps.InitializationVector) !== 'undefined')
+								{
+									$("#files_view_pane").html("<span style=\"font-style: normal;\n\
+										font-weight: normal;\n\
+										font-variant: normal;\n\
+										text-transform: none;\n\
+										line-height: 1;\n\
+										display: inline-block;\n\
+										font-size: 200px;\n\
+										height: 250px;\n\
+										font-family: 'afterlogic';\n\
+										width: 500px;\">&#59658;</span>");
+								}
+								else if (-1 !== $.inArray(newValue.mimeType(), aImgMimeTypes))
 								{
 									$("#files_view_pane").html("<img style='width:100%;' src='" + newValue.getActionUrl('view') + "'>");
 								}
