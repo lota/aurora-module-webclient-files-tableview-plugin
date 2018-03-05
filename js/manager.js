@@ -88,7 +88,7 @@ module.exports = function (oAppData) {
 								}
 								else
 								{
-									$("#files_view_pane").html("<iframe id='view_iframe' name='view_iframe' style='width: 320px; height: 200px; border: none;' src='" + newValue.getActionUrl('view') + "'></iframe>");
+									$("#files_view_pane").html("<iframe id='view_iframe' name='view_iframe' style='width: 100%; height: 400px; border: none;' src='" + newValue.getActionUrl('view') + "'></iframe>");
 								}
 							}
 						});
