@@ -18,12 +18,13 @@ class Module extends \Aurora\System\Module\AbstractWebclientModule
 {
 	public function init() 
 	{
-		$this->extendObject(
-			'Aurora\Modules\Core\Classes\User', 
-			array(
+		\Aurora\Modules\Core\Classes\User::extend(
+			self::GetName(),
+			[
 				'EnableModule' => array('bool', false),
 				'EnablePreviewPane' => array('bool', false),
-			)
+			]
+
 		);
 	}
 	
@@ -40,8 +41,8 @@ class Module extends \Aurora\System\Module\AbstractWebclientModule
 		if (!empty($oUser) && $oUser->Role === \Aurora\System\Enums\UserRole::NormalUser)
 		{
 			return array(
-				'EnableModule' => $oUser->{$this->GetName().'::EnableModule'},
-				'EnablePreviewPane' => $oUser->{$this->GetName().'::EnablePreviewPane'}
+				'EnableModule' => $oUser->{self::GetName().'::EnableModule'},
+				'EnablePreviewPane' => $oUser->{self::GetName().'::EnablePreviewPane'}
 			);
 		}
 		
@@ -63,8 +64,8 @@ class Module extends \Aurora\System\Module\AbstractWebclientModule
 		{
 			$oCoreDecorator = \Aurora\Modules\Core\Module::Decorator();
 			$oUser = $oCoreDecorator->GetUser($iUserId);
-			$oUser->{$this->GetName().'::EnableModule'} = $EnableModule;
-			$oUser->{$this->GetName().'::EnablePreviewPane'} = $EnablePreviewPane;
+			$oUser->{self::GetName().'::EnableModule'} = $EnableModule;
+			$oUser->{self::GetName().'::EnablePreviewPane'} = $EnablePreviewPane;
 			$oCoreDecorator->UpdateUserObject($oUser);
 		}
 		return true;
