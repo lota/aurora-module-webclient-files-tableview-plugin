@@ -14,6 +14,9 @@
 			<span class="icon" data-bind="css: extension().toLowerCase()"></span>
 			<!-- /ko -->
 			<span style="margin-right: auto;" class="published_icon" data-bind="click: function (oItem) { $root.onShareIconClick(oItem); }"></span>
+			<!-- ko if: (bIsShared()) -->
+			<span class="shared-image-table"></span>
+			<!-- /ko -->
 		</span>
 		<span class="data">
 			<div class="size" style="text-align: right;">

@@ -6,7 +6,11 @@
 >
 	<div class="item_content ui-droppable dragHandle" data-bind="css: {'recivedAnim': recivedAnim()}, droppable: {valueFunc: function (oEvent, oUi) {$root.filesDrop($data, oEvent, oUi);}}">
 		<span class="icon" style="vertical-align: middle;"></span>
-		<span class="published_icon" data-bind="click: function (oItem) { $root.onShareIconClick(oItem); }"></span>						
+			<span class="published_icon" data-bind="click: function (oItem) { $root.onShareIconClick(oItem); }"></span>
+			<!-- ko if: (bIsShared()) -->
+			<span class="shared-image-table"></span>
+			<!-- /ko -->
+		
 		<span class="name" data-bind="text: fileName()" style="padding-left: 10px"></span>
 	</div>
 </div>
