@@ -10,14 +10,13 @@ module.exports = function (oAppData) {
 				
 		Settings = require('modules/%ModuleName%/js/Settings.js'),
 		
-		bNormalUser = App.getUserRole() === window.Enums.UserRole.NormalUser,
 		bShow = false,
 		TemplateName = '%ModuleName%_ItemsView'
 	;
 
 	Settings.init(oAppData);
 	
-	if (bNormalUser)
+	if (App.isUserNormalOrTenant())
 	{
 		return {
 			start: function (ModulesManager) {
