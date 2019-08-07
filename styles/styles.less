@@ -86,12 +86,9 @@
 
 .shared-image-table {
 	border-radius: 5px;
-	display: block;
-	float: left;
+	display: inline-block;
 	height: 18px;
 	width: 18px;
-	margin-right: 15px;
-	margin-top: -10px;
 	overflow: hidden;
 	position: relative;
 	background: #64aedc;
@@ -109,15 +106,40 @@
 	}
  }
  
- .items_list .folder2  .item_content {
-	.published_icon {
-		margin-left: 15px;
-		margin-top: -5px; float: left;
-		position: absolute !important;
+ .icons-container {
+	 margin-left: 10px;
+ }
+ .secure-image-table {
+	border-radius: 5px;
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+	overflow: hidden;
+	position: relative;
+	background: #555;
+	color: #fff;
+	line-height: 18px;
+
+	.init-icon-font();
+
+	&:before {
+		display: inline-block;
+		font-size: 18px;
+		height: 100%;
+		width: 100%;
+		content: "\e90a";
 	}
-	.shared-image-table {
-		margin-top: -15px;
-		margin-right: 20px;
-		position: absolute;
+ }
+
+ .no-public .panel.files .items_list .item.published .icons-container .published_icon {
+	margin: 0;
+	float:	none;
+	display: inline-block;
+	border-radius: 5px;
+	line-height: 18px;
+
+	&:before {
+		display: inline-block;
+		height: 18px;
 	}
  }
